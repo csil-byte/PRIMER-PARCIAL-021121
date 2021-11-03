@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/script.js" type="module">
+    </script>
+    <link rel="stylesheet" href="./css/estilo.css">
+    <script src="https://kit.fontawesome.com/c4d1ad1d7d.js" crossorigin="anonymous"></script>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+
+
+    <title>Cecilia Silva - Primer Parcial</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="inner">
+            <div class="logo">
+                <div>
+                    <img src="./resources/vector_real_estate_logos_design.png" alt="Google logo">
+                </div>
+            </div>
+            <!-- Navigation Menu -->
+            <nav>
+                <ul>
+                    <li class="active">
+                        <a href="#">Inicio</a></li>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Anuncios</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+        <h1 id="hAdmin">Administracion</h1>
+        <div>
+            <img src="./resources/headercars.png" id="hImage">
+        </div>
+
+    </header>
+
+
+    <br></br>
+
+    <main class="crud">
+        <br></br>
+        <section>
+            <form id="formulario" action="/">
+                <fieldset>
+                    <legend>
+                        <h3 id="infoAnuncio">Informacion del anuncio</h3>
+                    </legend>
+                    <class="info-anuncio">
+                        <div><label>Titulo</label><input type="text" name="txtTitulo" placeholder="ingrese un nombre" autocomplete="off" required></div>
+                        <br></br>
+                        <div>
+
+
+                            <label>Transaccion*</label>
+                            <label class="container">Venta
+                                <input type="radio" checked="checked" name="rdoTransaccion" value="venta" id="venta"  required>
+                                <span class="checkmark"></span>
+                              </label>
+                            <label class="container">Alquiler
+                                <input type="radio" name="rdoTransaccion" value="alquiler" id="alquiler" required>
+                                <span class="checkmark"></span>
+                              </label>
+                            <label class="container">Permuta
+                                <input type="radio" name="rdoTransaccion" value="permuta" id="permuta" required>
+                                <span class="checkmark"></span>
+                              </label>
+                        </div>
+
+                        <br></br>
+                        <label for="txtDescripcion">Descripcion</label>
+                        <input type="text" autocomplete="off" name="txtDescripcion" id="iDescripcion" placeholder="ingrese una descripcion" required>
+                        <br></br>
+                        <label for="txtPrecio"><i class="fas fa-dollar-sign"></i>Precio</label>
+                        <input type="number" name="txtPrecio" id="txtPrecio" placeholder="ingrese el precio" autocomplete="off" required>
+                        <br></br>
+                        <label for="txtCantidadBaños"><i class="fas fa-door-open"></i>Cantidad de Puertas</label>
+                        <input type="number" name="txtPuertas" id="txtCantidadBaños" placeholder="ingrese cantidad de baños" autocomplete="off" required>
+                        <br></br>
+                        <label for="txtCantidadAutos"><i class="fas fa-tachometer-alt"></i>Kms</label>
+                        <input type="number" name="txtKms" id="txtCantidadAutos" placeholder="ingrese cantidad de autos" autocomplete="off" required>
+                        <br></br>
+                        <label for="txtCantidadDormitorios"><i class="fas fa-car-battery"></i>Potencia</label>
+                        <input type="number" name="txtCantidadPotencia" id="txtCantidadDormitorios" placeholder="ingrese cantidad de dormitorios" autocomplete="off" required>
+                        <input type="hidden" name="txtId">
+                        </div>
+                        </div>
+                        </class>
+                </fieldset>
+                <br></br>
+                <div class="buttons">
+                    <button type="submit" id="btnAgregar"><i class="fas fa-check"></i>Enviar
+                    </button>
+                    <button type="submit" id="btnEliminar"><i class="far fa-window-close"></i>Eliminar 
+                    </button>
+                </div>
+            </form>
+        </section>
+        <fieldset id="fieldTabla">
+            <legend>
+                <h3 id="listado">Listado de personas</h3>
+            </legend>
+            <br></br>
+            <input type="text" id="searchBar" placeholder="Buscar...">
+            <br></br>
+            <section>
+
+                <div id="divTabla"></div>
+            </section>
+        </fieldset>
+    </main>
+
+
+</body>
+
+</html>
