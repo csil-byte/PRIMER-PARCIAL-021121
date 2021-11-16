@@ -1,19 +1,21 @@
 // import { transacciones as trans } from "./transaccion.js";
-import { TransaccionAuto } from "./transaccionAuto.js";
+import { Anuncio_Objeto } from "./Anuncio_Objeto.js";
 import { crearTabla } from "./crearTabla.js"; //Importamos la función crearTablacc
-import { getMaxId } from "./transaccion.js"; //devuelve el id más grande
+import { getMaxId } from "./Anuncio.js"; //devuelve el id más grande
+
 const $formulario = document.forms[0];
 const $divTabla = document.getElementById("divTabla");
 const transacciones = JSON.parse(localStorage.getItem("transacciones")) || [];
-localStorage.setItem("transacciones", JSON.stringify(transacciones));
+const $divAlert = document.getElementById("divAlert");
+
+localStorage.setItem('transacciones', JSON.stringify(transacciones));
 
 
 actualizarTabla(transacciones);
 
-//delegacion de evento, filtrado los elementos que sean td
+//Devuelve ID al hacer click en elemento de la tabla
 window.addEventListener("click", (e) => {
     if (e.target.matches("td")) {
-
         const id = e.target.parentElement.dataset.id;
         const transaccionElegida = transacciones.find((transaccion) => transaccion.id == id);
         cargarFormulario(transaccionElegida);
@@ -21,11 +23,7 @@ window.addEventListener("click", (e) => {
         handlerEliminar(parseInt($formulario.txtId.value));
         $formulario.reset();
     }
-
-
 });
-
-
 
 
 //previene el comportamiento por defecto del formulario
@@ -35,25 +33,27 @@ $formulario.addEventListener("submit", (e) => {
     const {
         txtId,
         txtTitulo,
-        rdoTransaccion,
+        F_transaccion,
         txtDescripcion,
         txtPrecio,
         txtPuertas,
         txtKms,
-        potencia
+        txtCantidadPotencia,
     } = $formulario;
 
+    //Debe estar tal cual el HTML
+    const form_anuncio = new Anuncio_Objeto(txtId.value, txtTitulo.value,
+        F_transaccion.value, txtDescripcion.value, txtPrecio.value,
+        txtPuertas.value, txtKms.value, txtCantidadPotencia.value);
+    console.log(form_anuncio);
 
-    const formTransaccion = new TransaccionAuto(txtId.value, txtTitulo.value,
-        rdoTransaccion.value, txtDescripcion.value, txtPrecio.value,
-        txtPuertas.value, txtKms.value, potencia.value);
-    console.log(formTransaccion);
     const id = getMaxId(transacciones);
-    if (formTransaccion.id === "") { //alta}
-        formTransaccion.id = id + 1;
-        handlerCrear(formTransaccion);
+
+    if (form_anuncio.id === "") { //alta}
+        form_anuncio.id = id + 1;
+        handlerCrear(form_anuncio);
     } else { //modificacion 
-        handlerModificar(formTransaccion);
+        handlerModificar(form_anuncio);
     }
     $formulario.reset();
 
@@ -64,22 +64,23 @@ function cargarFormulario(transaccion) {
     const {
         txtId,
         txtTitulo,
-        rdoTransaccion,
+        F_transaccion,
         txtDescripcion,
         txtPrecio,
         txtPuertas,
         txtKms,
-        potencia
+        txtCantidadPotencia,
+
     } = $formulario;
 
     txtId.value = transaccion.id;
     txtTitulo.value = transaccion.titulo;
-    rdoTransaccion.value = transaccion.rdoTransaccion;
+    F_transaccion.value = transaccion.F_transaccion;
     txtDescripcion.value = transaccion.descripcion;
     txtPrecio.value = transaccion.precio;
-    txtPuertas.value = transaccion.txtPuertas;
-    txtKms.value = transaccion.txtKms;
-    potencia.value = transaccion.potencia;
+    txtPuertas.value = transaccion.puertas;
+    txtKms.value = transaccion.kms;
+    txtCantidadPotencia.value = transaccion.potencia;
 
 
 }
@@ -92,6 +93,19 @@ function hideDeleteButton() {
         $formulario.btnEliminar.style.display = "block";
     }
 }
+
+function alerta(texto) {
+
+
+    $divAlert.innerHTML = "<div id='textoAlerta'>" + texto + "</div>";
+
+    setTimeout(() => {
+        $divAlert.innerHTML = "";
+    }, 2000);
+
+}
+
+
 //agrega elemento a la tabla
 const handlerCrear = (nuevaTransaccion) => {
     transacciones.push(nuevaTransaccion);
@@ -101,27 +115,36 @@ const handlerCrear = (nuevaTransaccion) => {
 
 //modifica elemento de la tabla
 const handlerModificar = (transaccionModificada) => {
-    //usar filter para filtrar el elemento que se quiere modificar
-    let indice = transacciones.findIndex((transaccion) => { //findIndex devuelve el indice del elemento que se encuentra en el array
-        return transaccion.id == transaccionModificada.id;
-    });
-    transacciones.splice(indice, 1); //elimina el elemento del array
-    transacciones.push(transaccionModificada); //agrega el elemento modificado
 
-    actualizarStorage(transacciones); //actualiza el storage
-    actualizarTabla();
+    if (confirm("¿Está seguro que desea modificar? \n Esta operación es irreversible")) {
+        //usar filter para filtrar el elemento que se quiere modificar
+        let indice = transacciones.findIndex((transaccion) => { //findIndex devuelve el indice del elemento que se encuentra en el array
+            return transaccion.id == transaccionModificada.id;
+        });
+        transacciones.splice(indice, 1); //elimina el elemento del array
+        transacciones.push(transaccionModificada); //agrega el elemento modificado
+
+        actualizarStorage(transacciones); //actualiza el storage
+        actualizarTabla();
+
+        alerta("Elemento modificado");
+    }
 }
 
 //elimina elemento de la tabla
 const handlerEliminar = (id) => {
-    let indice = transacciones.findIndex((transaccion) => { //findIndex devuelve el indice del elemento que se encuentra en el array
-        return transaccion.id == id;
-    });
-    transacciones.splice(indice, 1); //elimina el elemento del array
+    if (confirm("¿Está seguro que desea eliminar? \n Esta operación es irreversible")) {
+        let indice = transacciones.findIndex((transaccion) => { //findIndex devuelve el indice del elemento que se encuentra en el array
+            return transaccion.id == id;
+        });
+        transacciones.splice(indice, 1); //elimina el elemento del array
 
-    actualizarStorage(transacciones); //actualiza el storage
-    actualizarTabla();
-    $formulario.reset();
+        actualizarStorage(transacciones); //actualiza el storage
+        actualizarTabla();
+        $formulario.reset();
+
+        alerta("Elemento eliminado");
+    }
 }
 const actualizarStorage = (data) => {
     (localStorage.setItem("transacciones", JSON.stringify(data)));

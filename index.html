@@ -15,7 +15,7 @@
 
 
 
-    <title>Cecilia Silva - Primer Parcial</title>
+    <title>Cecilia Silva - Recu Primer Parcial</title>
 </head>
 
 <body>
@@ -23,15 +23,16 @@
     <header>
         <div class="inner">
             <div class="logo">
-                <div>
-                    <img src="./resources/vector_real_estate_logos_design.png" alt="Google logo">
-                </div>
+                <!------------------- LOGO -------------------->
+
+                <img src="./resources/carslogo.png" id="img-logo" alt="Google logo">
+
             </div>
-            <!-- Navigation Menu -->
+            <!--------------------- NAVIGATION MENU ------------------>
             <nav>
                 <ul>
                     <li class="active">
-                        <a href="#">Inicio</a></li>
+                        <a href="./pages/mainpage.html">Inicio</a></li>
                     <li><a href="#">Nosotros</a></li>
                     <li><a href="#">Anuncios</a></li>
                     <li><a href="#">Blog</a></li>
@@ -57,46 +58,45 @@
                     <legend>
                         <h3 id="infoAnuncio">Informacion del anuncio</h3>
                     </legend>
-                    <class="info-anuncio">
-                        <div><label>Titulo</label><input type="text" name="txtTitulo" placeholder="ingrese un nombre" autocomplete="off" required></div>
-                        <br></br>
-                        <div>
+                    <div class="info-anuncio"><label>Titulo</label><input type="text" name="txtTitulo" placeholder="ingrese un nombre" autocomplete="off" required></div>
+                    <br></br>
+                    <div>
 
 
-                            <label>Transaccion*</label>
-                            <label class="container">Venta
-                                <input type="radio" checked="checked" name="rdoTransaccion" value="venta" id="venta"  required>
+                        <label>Transaccion*</label>
+                        <label class="container">Venta
+                                <input type="radio" checked="checked" name="F_transaccion" value="venta" id="venta"  required>
                                 <span class="checkmark"></span>
                               </label>
-                            <label class="container">Alquiler
-                                <input type="radio" name="rdoTransaccion" value="alquiler" id="alquiler" required>
+                        <label class="container">Alquiler
+                                <input type="radio" name="F_transaccion" value="alquiler" id="alquiler" required>
                                 <span class="checkmark"></span>
                               </label>
-                            <label class="container">Permuta
-                                <input type="radio" name="rdoTransaccion" value="permuta" id="permuta" required>
+                        <label class="container">Permuta
+                                <input type="radio" name="F_transaccion" value="permuta" id="permuta" required>
                                 <span class="checkmark"></span>
                               </label>
-                        </div>
-
-                        <br></br>
-                        <label for="txtDescripcion">Descripcion</label>
-                        <input type="text" autocomplete="off" name="txtDescripcion" id="iDescripcion" placeholder="ingrese una descripcion" required>
-                        <br></br>
-                        <label for="txtPrecio"><i class="fas fa-dollar-sign"></i>Precio</label>
-                        <input type="number" name="txtPrecio" id="txtPrecio" placeholder="ingrese el precio" autocomplete="off" required>
-                        <br></br>
-                        <label for="txtCantidadBaños"><i class="fas fa-door-open"></i>Cantidad de Puertas</label>
-                        <input type="number" name="txtPuertas" id="txtCantidadBaños" placeholder="ingrese cantidad de baños" autocomplete="off" required>
-                        <br></br>
-                        <label for="txtCantidadAutos"><i class="fas fa-tachometer-alt"></i>Kms</label>
-                        <input type="number" name="txtKms" id="txtCantidadAutos" placeholder="ingrese cantidad de autos" autocomplete="off" required>
-                        <br></br>
-                        <label for="txtCantidadDormitorios"><i class="fas fa-car-battery"></i>Potencia</label>
-                        <input type="number" name="txtCantidadPotencia" id="txtCantidadDormitorios" placeholder="ingrese cantidad de dormitorios" autocomplete="off" required>
-                        <input type="hidden" name="txtId">
-                        </div>
-                        </div>
-                        </class>
+                    </div>
+                    <!------                                      -----------CHECK BOX????????????------------------>
+                    <br></br>
+                    <label for="txtDescripcion">Descripcion</label>
+                    <input type="text" autocomplete="off" name="txtDescripcion" id="iDescripcion" placeholder="ingrese una descripcion" required>
+                    <br></br>
+                    <label for="txtPrecio"><i class="fas fa-dollar-sign "></i>Precio</label>
+                    <input type="number" name="txtPrecio" id="txtPrecio" placeholder="ingrese el precio" autocomplete="off" required>
+                    <br></br>
+                    <label for="txtPuertas"><i class="fas fa-door-open"></i>Cantidad de Puertas</label>
+                    <input type="number" name="txtPuertas" id="txtPuertas" placeholder="ingrese cantidad de baños" autocomplete="off" required>
+                    <br></br>
+                    <label for="txtKms"><i class="fas fa-tachometer-alt"></i>Kms</label>
+                    <input type="number" name="txtKms" id="txtKms" placeholder="ingrese cantidad de autos" autocomplete="off" required>
+                    <br></br>
+                    <label for="txtCantidadPotencia"><i class="fas fa-car-battery"></i>Potencia</label>
+                    <input type="number" name="txtCantidadPotencia" id="txtCantidadPotencia" placeholder="ingrese cantidad de dormitorios" autocomplete="off" required>
+                    <input type="hidden" name="txtId">
+                    </div>
+                    </div>
+                    </class>
                 </fieldset>
                 <br></br>
                 <div class="buttons">
@@ -112,16 +112,20 @@
                 <h3 id="listado">Listado de personas</h3>
             </legend>
             <br></br>
-            <input type="text" id="searchBar" placeholder="Buscar...">
+            <input type="text" id="searchBar" placeholder="Buscar... ">
             <br></br>
             <section>
 
                 <div id="divTabla"></div>
+                <div id="divAlert"></div>
+
             </section>
         </fieldset>
     </main>
-
-
+    <br></br>
+    <footer>
+        <div class="footer-content">&copy; 2021 - Cecilia Silva -</div>
+    </footer>
 </body>
 
 </html>
