@@ -1,14 +1,15 @@
-// import { transacciones as trans } from "./transaccion.js";
+import { transacciones as trans } from "./Anuncio.js";
 import { Anuncio_Objeto } from "./Anuncio_Objeto.js";
 import { crearTabla } from "./crearTabla.js"; //Importamos la función crearTablacc
 import { getMaxId } from "./Anuncio.js"; //devuelve el id más grande
+localStorage.setItem('transacciones', JSON.stringify(trans));
 
 const $formulario = document.forms[0];
 const $divTabla = document.getElementById("divTabla");
 const transacciones = JSON.parse(localStorage.getItem("transacciones")) || [];
 const $divAlert = document.getElementById("divAlert");
 
-localStorage.setItem('transacciones', JSON.stringify(transacciones));
+//localStorage.setItem('transacciones', JSON.stringify(trans));
 
 
 actualizarTabla(transacciones);
